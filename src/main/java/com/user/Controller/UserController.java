@@ -36,14 +36,7 @@ public class UserController {
     @GetMapping("/{userId}")
     public User getUser(@PathVariable("userId") Long userId) {
         User user = userRepository.findByUserId(userId);
-//        List contacts = this.restTemplate.getForObject("http://Contact-Service/contact/user/" + user.getUserId(), List.class);
-//        List vehicle = this.restTemplate.getForObject("http://Vehicle-Service/vehicle/user/" + user.getUserId(), List.class);
 
-//        CustomResponseEntity response = new CustomResponseEntity();
-//        response.setUser(user);
-////        response.setContacts(contacts);
-////        response.setVehicle(vehicle);
-//        return response;
         return user;
 
     }
