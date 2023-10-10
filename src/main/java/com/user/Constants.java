@@ -3,8 +3,8 @@ package com.user;
 public class Constants {
     int status_InvalidID=100;
     String status_message_InvalidID="Invalid User ID format";
-    int status_delete=200;
-    String status_message_delete="Data Deleted";
+    public int status_delete=200;
+    public String status_message_delete="Data Deleted";
     int status_success=201;
     String status_message_success="Data Inserted";
     int status_Update=202;

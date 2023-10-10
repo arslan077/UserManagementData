@@ -19,7 +19,7 @@ public class UserRequest {
     private String username;
 
     @NotBlank(message = "phone cannot be empty")
-    @Size(min = 11, max = 11, message = "phone size must be between 4 and 5 characters long")
+    @Size(min = 11, max = 11, message = "phone size must be 11 characters long")
     private String phone;
 
 

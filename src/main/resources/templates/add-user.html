@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create User</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Custom CSS for styling enhancements -->
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+        .outer-container {
+            margin: 20px;
+            margin-left: 10px;/* Apply margins to the entire content */
+            margin-left: 10px;
+
+        }
+        .container {
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .page-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+        .form-control {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+        }
+        .alert {
+            margin-top: 10px;
+        }
+        .btn-secondary {
+            margin-top: 10px;
+        }
+        .d-flex-end {
+            display: flex;
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+<body>
+<div class="outer-container">
+    <div class="container">
+        <h1 class="page-header">Create User</h1>
+
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <a th:href="@{/listusers}" class="btn btn-secondary">Back to List</a>
+                <form action='#' th:action="@{/saveuser}" method="POST" th:object="${userRequest}" class="mt-4">
+                    <!-- Display validation errors if any -->
+                    <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                        <ul>
+                            <li th:each="error : ${#fields.errors('*')}" th:text="${error}"></li>
+                        </ul>
+                    </div>
+
+                    <!-- Input fields -->
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username:</label>
+                        <input type="text" id="username" th:field="*{username}" class="form-control" required="required" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone:</label>
+                        <input type="text" id="phone" th:field="*{phone}" class="form-control" required="required" />
+                    </div>
+
+                    <!-- Submit button -->
+                    <div class="d-flex-end">
+                        <button type="submit" class="btn btn-primary">Create User</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include Bootstrap JS and Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

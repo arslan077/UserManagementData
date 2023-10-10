@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Management - Manage Contacts</title>
+</head>
+<body>
+<h1>Manage Contacts</h1>
+<table>
+    <tr>
+        <th>Contact ID</th>
+        <th>Contact Name</th>
+        <th>Email</th>
+        <th>Designation</th>
+        <th>Office Number</th>
+    </tr>
+    <tr th:each="contact : ${contacts}">
+        <td th:text="${contact.contactId}"></td>
+        <td th:text="${contact.contactName}"></td>
+        <td th:text="${contact.email}"></td>
+        <td th:text="${contact.contactDetails.designation}"></td>
+        <td th:text="${contact.contactDetails.officeNumber}"></td>
+    </tr>
+</table>
+<a th:href="@{/savecontact}">Save Contact</a>
+<a th:href="@{/listusers}">Cancel</a>
+</body>
+</html>

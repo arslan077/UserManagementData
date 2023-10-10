@@ -1,6 +1,6 @@
 package com.user.Entity;
 
-import com.fasterxml.jackson.databind.cfg.ContextAttributes;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +8,8 @@ import lombok.Setter;
 
 
 import jakarta.persistence.*;
+
+import java.util.List;
 
 
 @Setter
@@ -37,6 +39,7 @@ public class User {
         this.userId =userId;
         this.username=username;
         this.phone=phone;
+
 
     }
 
