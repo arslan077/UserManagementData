@@ -23,6 +23,6 @@ jobs:
       - name: Login to docker hub
         run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
       - name: Build docker image
-        run: docker build -t arslan173/usermanagement:DataManagement .
+        run: docker build -t arslan173/usermanagement .
       - name: Publish image to docker hub
-        run: docker push arslan173/usermanagement:DataManagement
+        run: docker push arslan173/usermanagement:latest
