@@ -26,3 +26,20 @@ jobs:
         run: docker build -t arslan173/usermanagement:latest .
       - name: Publish image to docker hub
         run: docker push arslan173/usermanagement:latest
+
+  deploy:
+    needs: build
+    runs-on: [self-hosted]
+    steps:
+      - name: Pull Image from Docker Hub
+        run: docker pull arslan173/usermanagement:latest
+
+      - name: Stop and Remove Old Container
+        run: docker rm -f usermanagement-container
+
+      - name: Run Docker Container
+        run: docker run -d --network host --name usermanagement-container arslan173/usermanagement:latest
+
+      - name: Clean Up Old Docker Images
+        #        run: docker image prune -f
+        run: docker system prune
