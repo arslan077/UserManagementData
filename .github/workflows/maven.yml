@@ -34,7 +34,7 @@ jobs:
       - name: Stop and Remove Old Container
         run:
           docker stop usermanagement-container || true
-          docker rm usermanagement-container || true
+          docker rm -f usermanagement-container || true
 
       - name: Pull Image from Docker Hub
         run: docker pull arslan173/usermanagement:latest
