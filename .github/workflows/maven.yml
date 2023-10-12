@@ -2,11 +2,9 @@ name: CI/CD flow
 
 on:
   push:
-    branches:
-      - master
+    branches: [ "master" ]
   pull_request:
-    branches:
-      - master
+    branches: [ "master" ]
 
 jobs:
   build:
@@ -22,27 +20,28 @@ jobs:
       - name: Build with Maven
         run: mvn clean install -DskipTests
 
-      - name: Login to Docker Hub
-        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-      - name: Build Docker Image
+      - name: Login to docker hub
+        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+      - name: Build docker image
         run: docker build -t arslan173/usermanagement:latest .
-      - name: Push Docker Image
+      - name: Publish image to docker hub
         run: docker push arslan173/usermanagement:latest
-
 
   deploy:
     needs: build
-    runs-on: self-hosted
+    runs-on: [self-hosted]
     steps:
       - name: Stop and Remove Old Container
-        run:
-          docker rm -f usermanagement-container
-#          docker stop usermanagement-container || true
-
-
+        run: docker rm -f usermanagement-container
+      - name: Clean Up Old Docker Images
+        run: docker image prune -f
       - name: Pull Image from Docker Hub
         run: docker pull arslan173/usermanagement:latest
+
+
 
       - name: Run Docker Container
         run: docker run -d --network host --name usermanagement-container arslan173/usermanagement:latest
 
+
+#        run: docker system prune
