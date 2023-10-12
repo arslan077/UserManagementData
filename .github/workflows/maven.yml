@@ -41,5 +41,5 @@ jobs:
         run: docker run -d --network host --name usermanagement-container arslan173/usermanagement:latest
 
       - name: Clean Up Old Docker Images
-        #        run: docker image prune -f
-        run: docker system prune
+        run: docker image prune -f
+#        run: docker system prune
